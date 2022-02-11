@@ -74,3 +74,7 @@ if DEBUG:
             MIDDLEWARE.index('debug_toolbar.middleware.DebugToolbarMiddleware') + 1,
             'djangoproject.middleware.CORSMiddleware'
         )
+MIDDLEWARE.insert(
+    0,
+    'dongtai_agent_python.middlewares.django_middleware.FireMiddleware'
+)

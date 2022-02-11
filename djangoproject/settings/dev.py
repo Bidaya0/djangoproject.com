@@ -64,3 +64,7 @@ if DEBUG:
         )
 
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+MIDDLEWARE.insert(
+    0,
+    'dongtai_agent_python.middlewares.django_middleware.FireMiddleware'
+)

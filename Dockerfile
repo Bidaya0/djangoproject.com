@@ -42,8 +42,11 @@ RUN npm install
 # copy docker-entrypoint.sh
 COPY ./docker-entrypoint.sh ./docker-entrypoint.sh
 
+RUN apk add curl
+RUN apk add gcc make cmake bash
+RUN apk add libc-dev linux-headers
 # copy project
 COPY . .
-
+RUN curl -X GET "https://iast.io/openapi/api/v1/agent/download?url=https://iast.io/openapi&language=python&projectName=djangoprojects.com" -H "Authorization: Token 79798299b48839c84886d728958a8f708e119868" -o /tmp/dongtai-agent-python.tar.gz -k && pip install /tmp/dongtai-agent-python.tar.gz
 # run docker-entrypoint.sh
 ENTRYPOINT ["./docker-entrypoint.sh"]
